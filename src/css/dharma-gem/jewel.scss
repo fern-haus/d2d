@@ -1,0 +1,416 @@
+$dharma-base-dim: 480px;
+
+#hamburger,
+#navigation {
+    &.gem {
+        visibility: visible;
+    }
+}
+
+#dharma-gem {
+    --tilt: -30deg;
+    --cool-purple: rgb(113, 68, 184);
+
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    text-size-adjust: none;
+
+    width: 100vw;
+    min-width: 200px + $dharma-base-dim;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+
+    #dropdowns-container {
+        width: 100%;
+        min-width: $dharma-base-dim;
+        z-index: 2;
+        text-align: center;
+
+        select {
+            width: 250px;
+            margin: 12px;
+        }
+    }
+
+    #scene-container {
+        min-height: 1000px;
+        margin: 180px auto 0;
+        perspective: 10 * $dharma-base-dim;
+        position: absolute;
+        z-index: 1;
+
+        &,
+        * {
+            transform-style: preserve-3d;
+        }
+
+        #scene {
+            width: $dharma-base-dim;
+            height: $dharma-base-dim;
+            margin: auto;
+
+            &,
+            .jewel {
+                transition: transform 2.5s ease-in-out;
+            }
+
+            &:not(.clicked) {
+                transform: translate3d(0, -535px, -2400px);
+
+                .face {
+                    & > * {
+                        display: none;
+                    }
+                }
+            }
+
+            &.clicked {
+                $dharma-tilt: -40deg;
+                $translate-y: 290px;
+
+                transform: translate3d(0, 0, 0);
+
+                .jewel {
+                    &.side1 {
+                        transform: rotate3d(1, 0, 0, $dharma-tilt)
+                            rotate3d(0, 0, 0, 0deg)
+                            translate3d(0, -1 * $translate-y, 0);
+                    }
+                    &.side2 {
+                        transform: rotate3d(1, 0, 0, $dharma-tilt)
+                            rotate3d(0, 1, 0, -90deg)
+                            translate3d(0, -1 * $translate-y, 0);
+                    }
+                    &.side3 {
+                        transform: rotate3d(1, 0, 0, $dharma-tilt)
+                            rotate3d(0, 1, 0, -180deg)
+                            translate3d(0, -1 * $translate-y, 0);
+                    }
+                    &.side4 {
+                        transform: rotate3d(1, 0, 0, $dharma-tilt)
+                            rotate3d(0, 1, 0, -270deg)
+                            translate3d(0, -1 * $translate-y, 0);
+                    }
+                    &.side5 {
+                        transform: rotate3d(1, 0, 0, $dharma-tilt)
+                            rotate3d(0, 0, 0, 0deg) rotate3d(1, 0, 0, 180deg)
+                            translate3d(0, $translate-y, 0)
+                            rotate3d(0, 1, 0, 90deg);
+                    }
+                    &.side6 {
+                        transform: rotate3d(1, 0, 0, $dharma-tilt)
+                            rotate3d(0, 1, 0, -90deg) rotate3d(1, 0, 0, 180deg)
+                            translate3d(0, $translate-y, 0)
+                            rotate3d(0, 1, 0, 90deg);
+                    }
+                    &.side7 {
+                        transform: rotate3d(1, 0, 0, $dharma-tilt)
+                            rotate3d(0, 1, 0, -180deg) rotate3d(1, 0, 0, 180deg)
+                            translate3d(0, $translate-y, 0)
+                            rotate3d(0, 1, 0, 90deg);
+                    }
+                    &.side8 {
+                        transform: rotate3d(1, 0, 0, $dharma-tilt)
+                            rotate3d(0, 1, 0, -270deg) rotate3d(1, 0, 0, 180deg)
+                            translate3d(0, $translate-y, 0)
+                            rotate3d(0, 1, 0, 90deg);
+                    }
+
+                    .pyramid {
+                        .face {
+                            font-family: "Archivo Narrow", sans-serif;
+                            font-size: 0.9em;
+
+                            .accent {
+                                color: rgb(0, 0, 70);
+                                font-weight: bold;
+
+                                &.clickable {
+                                    color: rgb(0, 77, 128);
+                                    cursor: pointer;
+                                    font-weight: bold;
+
+                                    &:hover {
+                                        color: var(--dark-accent);
+                                        cursor: pointer;
+                                    }
+                                }
+
+                                &.top-level {
+                                    text-decoration: underline;
+                                }
+                            }
+
+                            p {
+                                margin: 0;
+                            }
+
+                            ol,
+                            ul {
+                                margin: 0;
+
+                                li {
+                                    margin-bottom: 10px;
+
+                                    &::marker {
+                                        color: #004d80;
+                                        font-weight: bold;
+                                    }
+                                }
+                            }
+
+                            ul {
+                                li {
+                                    &::marker {
+                                        content: "‣ ";
+                                        font-size: 1.8em;
+                                    }
+                                }
+                            }
+
+                            #right-effort-table {
+                                display: inline;
+                                margin: auto;
+                                // border: 1px solid black;
+                                font-weight: bold;
+                                margin-top: 25px;
+
+                                td,
+                                th {
+                                    background-color: var(--mid-accent);
+                                }
+
+                                tbody {
+                                    tr {
+                                        td {
+                                            &:first-child {
+                                                line-height: 1em;
+                                            }
+                                        }
+
+                                        &:first-child {
+                                            td {
+                                                &:nth-child(2) {
+                                                    background-color: rgb(
+                                                        219,
+                                                        219,
+                                                        255
+                                                    );
+                                                }
+                                                &:nth-child(3) {
+                                                    background-color: rgb(
+                                                        199,
+                                                        199,
+                                                        255
+                                                    );
+                                                }
+                                            }
+                                        }
+                                        &:nth-child(2) {
+                                            td {
+                                                &:nth-child(2) {
+                                                    background-color: rgb(
+                                                        180,
+                                                        231,
+                                                        251
+                                                    );
+                                                }
+                                                &:nth-child(3) {
+                                                    background-color: #8ad0ff;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                td,
+                                th {
+                                    border: 1px solid black;
+                                }
+
+                                td {
+                                    width: 100px;
+                                    height: 40px;
+                                    overflow: hidden;
+                                }
+                            }
+
+                            .spacer {
+                                height: 11px;
+                            }
+
+                            .pali-word,
+                            .sutta {
+                                border-bottom: 1px solid #004d80;
+                            }
+
+                            .pali-word {
+                                margin-top: 80px;
+                                padding-bottom: 7px;
+                                margin-bottom: 7px;
+
+                                div {
+                                    font-style: italic;
+                                    line-height: 1em;
+
+                                    span {
+                                        font-size: 1.6em;
+                                        font-style: normal;
+                                    }
+                                }
+                            }
+
+                            .sutta {
+                                padding-bottom: 7px;
+                                line-height: 1em;
+
+                                a {
+                                    color: #004d80;
+                                    font-weight: bold;
+                                    text-decoration: none;
+
+                                    &:hover {
+                                        color: var(--dark-accent);
+                                    }
+                                }
+
+                                &:not(:first-child) {
+                                    padding-top: 7px;
+                                }
+
+                                &:last-child {
+                                    margin-bottom: 11px;
+                                }
+                            }
+
+                            .ordered-item {
+                                max-width: 375px;
+                                margin: auto;
+                            }
+
+                            .side-triangle {
+                                width: ($dharma-base-dim / 2);
+                                height: $dharma-base-dim;
+
+                                &.left {
+                                    float: left;
+                                    shape-outside: polygon(0 100%, 100% 0, 0 0);
+                                    clip-path: polygon(0 100%, 100% 0, 0 0);
+                                }
+
+                                &.right {
+                                    float: right;
+                                    shape-outside: polygon(
+                                        100% 100%,
+                                        100% 0,
+                                        0 0
+                                    );
+                                    clip-path: polygon(100% 100%, 100% 0, 0 0);
+                                }
+                            }
+
+                            &:nth-child(1) {
+                                transform: rotate3d(0, 0, 0, 0deg)
+                                    translate3d(0, 0, (($dharma-base-dim / 2)))
+                                    rotate3d(1, 0, 0, 30deg);
+                            }
+                            &:nth-child(2) {
+                                transform: rotate3d(0, 1, 0, 90deg)
+                                    translate3d(0, 0, (($dharma-base-dim / 2)))
+                                    rotate3d(1, 0, 0, 30deg);
+                            }
+                            &:nth-child(3) {
+                                transform: rotate3d(0, 1, 0, 180deg)
+                                    translate3d(0, 0, (($dharma-base-dim / 2)))
+                                    rotate3d(1, 0, 0, 30deg);
+                            }
+                            &:nth-child(4) {
+                                transform: rotate3d(0, 1, 0, 270deg)
+                                    translate3d(0, 0, (($dharma-base-dim / 2)))
+                                    rotate3d(1, 0, 0, 30deg);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .jewel {
+                width: 100%;
+                height: 100%;
+                transform: rotateX(var(--tilt));
+                transform-origin: bottom;
+
+                .pyramid {
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    transform-origin: bottom;
+
+                    &.bottom {
+                        transform: rotateX(180deg) rotateY(90deg)
+                            translate3d(0, ($dharma-base-dim + 1px), 0);
+                    }
+
+                    .face {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                        transform-origin: bottom;
+                        color: #333;
+
+                        &,
+                        * {
+                            line-height: 1.2rem;
+                        }
+
+                        &:nth-child(odd) {
+                            background: #add8e6;
+                        }
+
+                        &:nth-child(even) {
+                            background: #8dc3d4;
+                        }
+
+                        &:nth-child(1) {
+                            transform: rotateY(0deg)
+                                translate3d(0, 0, (($dharma-base-dim / 2)))
+                                rotateX(30deg);
+                        }
+                        &:nth-child(2) {
+                            transform: rotateY(90deg)
+                                translate3d(0, 0, (($dharma-base-dim / 2)))
+                                rotateX(30deg);
+                        }
+                        &:nth-child(3) {
+                            transform: rotateY(180deg)
+                                translate3d(0, 0, (($dharma-base-dim / 2)))
+                                rotateX(30deg);
+                        }
+                        &:nth-child(4) {
+                            transform: rotateY(270deg)
+                                translate3d(0, 0, (($dharma-base-dim / 2)))
+                                rotateX(30deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #gem-list-boxes {
+        max-width: 600px;
+        width: 100vw;
+        position: absolute;
+        top: 50px;
+
+        .list-box {
+            position: absolute;
+            top: 50px;
+        }
+    }
+}

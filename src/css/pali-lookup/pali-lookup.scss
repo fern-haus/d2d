@@ -1,0 +1,40 @@
+#pali-lookup {
+    height: 100%;
+    text-align: center;
+
+    #all-words {
+        height: calc(100% - var(--banner-container-height));
+
+        #eng-words {
+            background-color: var(--light-accent);
+
+            .selected {
+                background-color: white;
+            }
+        }
+
+        #pali-words {
+            background-color: var(--dark-accent);
+            color: white;
+
+            .selected {
+                background-color: var(--mid-accent);
+                color: black;
+            }
+        }
+
+        .words {
+            height: 50%;
+            overflow: auto;
+
+            div {
+                padding: 5px 10px;
+            }
+
+            .selected {
+                font: bold 1.9em "Barlow Semi Condensed";
+                flex: 1;
+            }
+        }
+    }
+}

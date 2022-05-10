@@ -9,7 +9,7 @@ export default function Mindfulness({ setPath }) {
     return (
         <>
             <Heading {...{ pali, suttas }} />
-            {joined}
+            <p>{joined}</p>
             <div className="spacer"></div>
             <div className="accent top-level">{mentalObjs.name}</div>
             {mentalObjs.parts

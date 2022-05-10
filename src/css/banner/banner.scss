@@ -93,6 +93,11 @@
     gap: 10px;
     text-align: center;
 
+    &.gem {
+        position: absolute;
+        top: var(--banner-container-height);
+    }
+
     h2,
     a {
         font-family: "Barlow Semi Condensed", sans-serif !important;

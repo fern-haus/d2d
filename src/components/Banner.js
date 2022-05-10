@@ -1,7 +1,7 @@
 import "../css/banner/banner.css";
 import { Link } from "react-router-dom";
 
-export default function Banner({ isGem }) {
+export default function Banner({ isGem, navOpen }) {
     const links = (
         <>
             <Link to="../d2d/dharma-gem">Dharma Gem</Link>
@@ -16,7 +16,9 @@ export default function Banner({ isGem }) {
         <>
             <div
                 id="navigation"
-                className={`nav-closed ${isGem ? "gem" : "not-gem"}`}
+                className={`nav-${navOpen ? "open" : "closed"} ${
+                    isGem ? "gem" : "not-gem"
+                }`}
             >
                 <h2>Door 2 Dharma</h2>
                 <Link to="../d2d">Home</Link>
@@ -46,9 +48,7 @@ export default function Banner({ isGem }) {
 }
 
 function toggleNav({ isGem }) {
-    const navOpen = document.getElementsByClassName("nav-open")[0],
-        navClosed = document.getElementsByClassName("nav-closed")[0],
-        nav = navOpen || navClosed,
+    const nav = document.getElementById("navigation"),
         hamburger = document.getElementById("hamburger"),
         cn = nav.className.includes("nav-open") ? "nav-closed" : "nav-open",
         gem = isGem ? "gem" : "not-gem";

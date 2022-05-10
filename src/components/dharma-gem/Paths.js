@@ -1,6 +1,4 @@
 import "../../css/dharma-gem/paths.css";
-import { useEffect, useState } from "react";
-import { toggleNav } from "../Banner";
 
 const Paths = ({
     setPath,
@@ -10,19 +8,10 @@ const Paths = ({
     justPaths,
     paliWords,
     thePath,
+    pathsOpen,
+    setPathsOpen,
+    setNavOpen,
 }) => {
-    const [isOpen, setIsOpen] = useState(undefined);
-
-    useEffect(() => {
-        const cn = document.getElementById("scene").className;
-        document.getElementById("scene").className = isOpen
-            ? cn.replaceAll("clicked", "")
-            : isOpen !== undefined && cn + " clicked";
-        // set to undefined, not "CLOSED"
-        // so that the clicked className will be removed:
-        isOpen && setList(undefined);
-    }, [isOpen, setList]);
-
     function getPathGroups() {
         let result = {};
         thePath.forEach(
@@ -39,7 +28,8 @@ const Paths = ({
 
     function sidesHandler(path) {
         setPath(pathNames.indexOf(path) + 1);
-        setIsOpen(false);
+        setPathsOpen(false);
+        setNavOpen(false);
         console.log(pathNames.indexOf(path) + 1);
     }
 
@@ -62,7 +52,8 @@ const Paths = ({
             <select
                 onChange={(e) => {
                     setList(e.target.value);
-                    setIsOpen(false);
+                    setPathsOpen(false);
+                    setNavOpen(false);
                 }}
                 value={list || "CLOSED"}
             >
@@ -75,7 +66,7 @@ const Paths = ({
     }
 
     return (
-        <div id="paths" className={isOpen ? "open" : "closed"}>
+        <div id="paths" className={pathsOpen ? "open" : "closed"}>
             <div id="main">
                 <div id="header">
                     The Noble Eightfold Path from the
@@ -104,8 +95,23 @@ const Paths = ({
                 <div id="dropdowns-container">{listsDropdown()}</div>
             </div>
             <div id="links">
-                <div onClick={() => toggleNav({ isGem: true })}>MENU</div>
-                <div id="select-path" onClick={() => setIsOpen(!isOpen)}>
+                <div
+                    onClick={() => {
+                        setNavOpen((navOpen) => !navOpen);
+                        setPathsOpen(false);
+                        setList(undefined);
+                    }}
+                >
+                    MENU
+                </div>
+                <div
+                    id="select-path"
+                    onClick={() => {
+                        setPathsOpen((path) => !path);
+                        setNavOpen(false);
+                        setList(undefined);
+                    }}
+                >
                     SELECT A PATH
                 </div>
             </div>

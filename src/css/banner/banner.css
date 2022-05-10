@@ -98,6 +98,11 @@
   text-align: center;
 }
 
+#navigation.gem {
+  position: absolute;
+  top: var(--banner-container-height);
+}
+
 #navigation h2,
 #navigation a {
   font-family: "Barlow Semi Condensed", sans-serif !important;
